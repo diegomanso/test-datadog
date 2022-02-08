@@ -50,7 +50,7 @@ The pipeline will execute the terraform code inside of the "terraform" folder, d
 # Other
 In the installDatadog folder is the file I have used to deploy the datadog agent on my AKS cluster in case of needed the cluster name + the api and app keys need to be changed on the file locally or get them from a secret
 
-# Execute terrarorm locally
+# Execute terraform locally
 In order to execute terraform locally you need to:
 - Remove the backend.tf file from the terraform folder
 - Add the secrets on your local terraform.tfvars files replacing what we have in the directory
