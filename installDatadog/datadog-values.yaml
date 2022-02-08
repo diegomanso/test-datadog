@@ -1,0 +1,36 @@
+# Datadog Agent with Logs, APM, Processes, and System Probe enabled
+# with specific configuration to work on AKS.
+
+targetSystem: "linux"
+datadog:
+  apiKey: # Send by parameter or replacement from the pipeline
+  appKey: # Send by parameter or replacement from the pipeline
+  # If not using secrets, then use apiKey and appKey instead
+  #apiKeyExistingSecret: <DATADOG_API_KEY_SECRET>
+  #appKeyExistingSecret: <DATADOG_APP_KEY_SECRET>
+  clusterName: poc-akscluster
+  tags: []
+  kubelet:
+    host:
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+    hostCAPath: /etc/kubernetes/certs/kubeletserver.crt
+  logs:
+    enabled: true
+    containerCollectAll: false
+    containerCollectUsingFiles: true
+  apm:
+    portEnabled: true
+    socketPath: /var/run/datadog/apm.socket
+    hostSocketPath: /var/run/datadog/
+  processAgent:
+    enabled: true
+    processCollection: false
+  systemProbe:
+    enableTCPQueueLength: false
+    enableOOMKill: true
+    collectDNSStats: false
+  logs:
+    enabled: true
+    containerCollectAll: true
