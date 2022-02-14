@@ -31,21 +31,19 @@ stages:
             provider: 'azurerm'
             command: 'init'
             workingDirectory: './terraform'
-            commandOptions: '-var-file="terraform.tfvars'
             backendServiceArm: '$(service_connection)'
             backendAzureRmResourceGroupName: '$(terraform_state_file_resource_group)'
             backendAzureRmStorageAccountName: '$(terraform_state_file_storage)'
             backendAzureRmContainerName: '$(terraform_state_file_container)'
-            backendAzureRmKey: '$(terraform_state_file_apikey)'
+            backendAzureRmKey: '$(terraform_state_file_name)'
           displayName: 'Terraform - azurerm init'
-        
         
         - task: TerraformTaskV2@2
           inputs:
             provider: 'azurerm'
             command: 'apply'
-            workingDirectory: './Deploy/terraform'
-            commandOptions: '-var-file="terraform.tfvars" -input=false -auto-approve -no-color '
+            workingDirectory: './terraform'
+            commandOptions: '-var-file=./terraform.tfvars -input=false -auto-approve -no-color '
             environmentServiceNameAzureRM: '$(service_connection)'
           displayName: 'Terraform - azurerm apply'
 

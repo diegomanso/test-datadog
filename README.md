@@ -1,4 +1,4 @@
-# Introduction 
+# Introduction
 The objective of this exercise is to design, deploy and provision an Observabilty as Code solution for Azure Kubernetes (AKS)
 
 The terraform code have been tested locally but I am not able to run the pipelines because by the default Microsoft set the number of parallels jobs to 0 on the free accounts, and it takes 2 to 3 days to activate, so I will create the pipelines code without test it
@@ -31,7 +31,7 @@ service_connection = "Service connection for the azure pipeline to connect to az
 terraform_state_file_resource_group = "The resource group containing the storage where the terraform tfstate will be saved"
 terraform_state_file_storage = "The name of the storage account that will contain the terraform state file"
 terraform_state_file_container = "The container to save the terraform state file"
-terraform_state_file_apikey = "The APIKey for terraform to get access to the storage that contains the terraform state file"
+terraform_state_file_name = "The name of the terraform state file"
 ```
 
 2. Go to Pipelines and create a new pipeline using this repository as source and azure-pipelines.yaml file as main file for the pipeline
@@ -50,7 +50,7 @@ The pipeline will execute the terraform code inside of the "terraform" folder, d
 # Other
 In the installDatadog folder is the file I have used to deploy the datadog agent on my AKS cluster in case of needed the cluster name + the api and app keys need to be changed on the file locally or get them from a secret
 
-# Execute terraform locally
+# Execute terrarorm locally
 In order to execute terraform locally you need to:
 - Remove the backend.tf file from the terraform folder
 - Add the secrets on your local terraform.tfvars files replacing what we have in the directory
